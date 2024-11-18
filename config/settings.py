@@ -24,13 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-6r)#^6_l&9l7_90n9wd$n$asq8de53@3v$a5jgi3$l@@yk4k+t'
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
+
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+
 DEBUG = os.getenv('DEBUG', 'True') == 'True'  
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
@@ -45,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "todoapp",
+    "apps.core",
     'rest_framework',
 ]
 
@@ -83,16 +86,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Todo',  
-#         'USER': 'postgres',      
-#         'PASSWORD': '12345',  
-#         'HOST': 'localhost',   
-#         'PORT': '5432',        
-#     }
-# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
