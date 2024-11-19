@@ -31,15 +31,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+SECRET_KEY = 'django-insecure-6r)#^6_l&9l7_90n9wd$n$asq8de53@3v$a5jgi3$l@@yk4k+t'
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' 
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'rezeena.dahal@gmail.com'
+EMAIL_HOST_PASSWORD = 'helloworld123@'
 
 
 
 
 
 
-DEBUG = os.getenv('DEBUG', 'True') == 'True'  
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+# DEBUG = os.getenv('DEBUG', 'True') == 'True'  
+# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 
@@ -56,6 +66,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
+    'drf_spectacular',
 ]
 
 REST_FRAMEWORK = {
@@ -65,6 +76,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  
     'PAGE_SIZE': 10, 
