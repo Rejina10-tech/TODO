@@ -31,22 +31,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-SECRET_KEY = 'django-insecure-6r)#^6_l&9l7_90n9wd$n$asq8de53@3v$a5jgi3$l@@yk4k+t'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'rezeena.dahal@gmail.com'
-EMAIL_HOST_PASSWORD = 'helloworld123@'
+# ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 
 
 
-# DEBUG = os.getenv('DEBUG', 'True') == 'True'  
-# ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+DEBUG = os.getenv('DEBUG', 'True') == 'True'  
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 
@@ -77,6 +70,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10, 
 }
 from datetime import timedelta
+from decouple import config
+SECRET_KEY = config('SECRET_KEY', default='fallback-secret-key')
 
 
 SIMPLE_JWT = {
